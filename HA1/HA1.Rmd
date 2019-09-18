@@ -20,5 +20,17 @@ library(mixtools)
 ?rmvnorm
 ```
 
+<!-- Time to generate 1000 realizations from a 2D Gaussian distrubution -->
+```{r}
+mu = t(data.frame(c(2,3))) # mean values
+sigma = data.frame(c(1,4))# standard deviations
+#sigma = t(sigma)
+p = 0.7 # correlation factor
+n = 1000 # number of realizations
+
+rmvnorm(n, mu, sigma)
+
+```
+
 
 
