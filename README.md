@@ -8,21 +8,12 @@ ___
 
 ###### Task 1: GMM and estimation with EM algorithm
 
-`python3 -m venv venv`
-
-`venv/bin/python -m pip install --upgrade pip`
-
-`venv/bin/python -m pip install -r requirements.txt`
-
-`source venv/bin/activate`
+`Include any notes regarding this part if you want.`
 
 
 ###### Task 2: A puzzle
 
-`python3 read_data_from_file.py number_of_files_to_read`
-
-
-`number_of_files_to_read`: parameter to adjust how much data is loaded
+`Include any notes regarding this part if you want.`
 
 ___
 
