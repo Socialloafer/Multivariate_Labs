@@ -1,6 +1,6 @@
 ---
 title: "Lab Assignment 1"
-author: "Joakim Olofsson, Jesper Nyman"
+author: "Joakim Olofsson, Jesper Nyman, Oliver Pahmp, Roma Goussakov"
 date: "18 Sep 2019"
 output:
   pdf_document:
