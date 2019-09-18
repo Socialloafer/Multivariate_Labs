@@ -22,15 +22,21 @@ library(mixtools)
 
 <!-- Time to generate 1000 realizations from a 2D Gaussian distrubution -->
 ```{r}
-mu = t(data.frame(c(2,3))) # mean values
-sigma = data.frame(c(1,4))# standard deviations
-#sigma = t(sigma)
-p = 0.7 # correlation factor
 n = 1000 # number of realizations
+p = 0.7 # correlation factor
+mu = c(2,3) # mean
+sigma = c(1,4) # sigma
+Cov = matrix(c(1,p*4,p*4,16),nrow=2,ncol=2) # Covariance
 
-rmvnorm(n, mu, sigma)
+X = rmvnorm(n, mu, Cov) # X values
 
+plot(X) # Scatterplot
 ```
 
+>Task 1.2:
+
+```{r}
+
+```
 
 
