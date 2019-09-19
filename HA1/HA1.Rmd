@@ -35,7 +35,7 @@ plot(X) # Scatterplot
 
 >Task 1.2:
 
-```{r}
+```{r echo=False}
 p = 0.6 # Bernoulli distribution parameter
 n = 1000
 
@@ -80,5 +80,23 @@ res2 = Y$mu[[2]] - u2 # Compare diff between means
 # There seems to be smaller than 5% difference in means.
 ```
 
+***
+## Task 2
+***
+
+
+```{r}
+# Get the mean vectors only? :D
+Flower_data = read.table("BlindingIris.txt", as.is= TRUE)
+Flower_data = tail(Flower_data,100)
+
+Petal_length = as.numeric(Flower_data$V1)
+Petal_width = as.numeric(Flower_data$V2)
+
+mu_length = mean(Petal_length)
+mu_width = mean(Petal_width)
+length_setosa_versicolor = (4.260+1.462)/2
+width_setosa_versicolor = (0.246+1.326)/2
+```
 
 
