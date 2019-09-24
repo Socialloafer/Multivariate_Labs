@@ -26,8 +26,9 @@ n = 1000 # number of realizations
 p = 0.7 # correlation factor
 mu = c(2,3) # mean
 sigma = c(1,4) # sigma
-Cov = matrix(c(1,p*4,p*4,16),nrow=2,ncol=2) # Covariance
+Cov = matrix(c(1, p*2, p*2, 4),nrow=2,ncol=2) # Covariance
 
+set.seed(5)
 X = rmvnorm(n, mu, Cov) # X values
 
 plot(X) # Scatterplot
@@ -36,34 +37,15 @@ plot(X) # Scatterplot
 >Task 1.2:
 
 ```{r echo=False}
-p = 0.6 # Bernoulli distribution parameter
-n = 1000
+set.seed(5)
+latent_variable <- c(rbinom(1000, 1, 0.6))
+simulation_1.2 <- matrix(0, nrow = 1000, ncol = 2)
 
-X = matrix(0, nrow=1000,ncol=2)
-
-u1 = c(2,3)
-u2 = c(3,2)
-
-sigma_1 = c(0.2,0.6)
-sigma_2 = c(0.4,0.3)
-
-p1 = 0.5
-p2 = 0.5
-
-Cov_1 = matrix(c(sigma_1[1]*sigma_1[1],p1*sigma_1[1]*sigma_1[2],p1*sigma_1[2]*sigma_1[1],sigma_1[2]*sigma_1[2]),nrow=2,ncol=2)
-
-Cov_2 = matrix(c(sigma_2[1]*sigma_2[1],p2*sigma_2[1]*sigma_2[2],p2*sigma_2[2]*sigma_2[1],sigma_2[2]*sigma_2[2]),nrow=2,ncol=2)
-
-for (i in seq(from=1, to=n, by=1))
-{
-  z = rbinom(n=1,prob=p,size=1)
-  if (z == 1)
-  {
-    X[i,] = rmvnorm(1, u1, Cov_1) # X values
-  }
-  else
-  {
-    X[i,] = rmvnorm(1, u2, Cov_2) # X Values
+for(i in 1:length(latent_variable)){
+  if(latent_variable[i] == 1){
+    simulation_1.2[i,] <- rmvnorm(1, mu=c(2,3), sigma=matrix(c(0.04, 0.06, 0.06, 0.36), nrow = 2, ncol = 2))
+  } else if(latent_variable[i] == 0){
+    simulation_1.2[i,] <- rmvnorm(1, mu=c(3,2), sigma=matrix(c(0.16, 0.06, 0.06, 0.09), nrow = 2, ncol = 2))
   }
 }
 
@@ -73,6 +55,7 @@ for (i in seq(from=1, to=n, by=1))
 
 ```{r}
 lambda = c(0.6, 0.4)
+set.seed(5)
 Y = mvnormalmixEM(X, c(0.6,0.4))
 res1 = Y$mu[[1]] - u1 # Compare difference between means
 res2 = Y$mu[[2]] - u2 # Compare diff between means
@@ -86,17 +69,10 @@ res2 = Y$mu[[2]] - u2 # Compare diff between means
 
 
 ```{r}
-# Get the mean vectors only? :D
-Flower_data = read.table("BlindingIris.txt", as.is= TRUE)
-Flower_data = tail(Flower_data,100)
-
-Petal_length = as.numeric(Flower_data$V1)
-Petal_width = as.numeric(Flower_data$V2)
-
-mu_length = mean(Petal_length)
-mu_width = mean(Petal_width)
-length_setosa_versicolor = (4.260+1.462)/2
-width_setosa_versicolor = (0.246+1.326)/2
+iris_data <- read.table(file.choose(), header = TRUE)
+set.seed(5)
+puzzle_estimate <- mvnormalmixEM(iris_data, k=2)
+puzzle_estimate[3]
 ```
-
+From our reaserch we could conclude that the means correspond to setosa and verticolor!!!
 
